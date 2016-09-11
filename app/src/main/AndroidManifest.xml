@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatientActivity" />
-        <activity android:name=".SymptomActivity"></activity>
+        <activity android:name=".SymptomActivity" />
+        <activity android:name=".EvaluationActivity"></activity>
     </application>
 
 </manifest>
