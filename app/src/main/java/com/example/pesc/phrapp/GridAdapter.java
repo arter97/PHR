@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 /**
  * Created by PESC on 2016-09-10.
  */
@@ -45,8 +47,11 @@ public class GridAdapter extends BaseAdapter {
 
         if (convertView==null)
             convertView = inflater.inflate(layout, null);
+        ImageLoader imageLoader = ImageLoader.getInstance();
+
         ImageView imageView = (ImageView)convertView.findViewById(R.id.imageView);
-        imageView.setImageResource(image[position]);
+        //imageView.setImageResource(image[position]);
+        imageLoader.displayImage("drawable://"+image[position],imageView);
 
         return convertView;
     }
