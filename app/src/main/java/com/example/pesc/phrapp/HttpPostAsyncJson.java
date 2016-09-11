@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 /**
  * Created by saemy on 2016-09-11.
@@ -24,7 +25,12 @@ public class HttpPostAsyncJson {
 
     private class Person
     {
-
+        String id;
+        String password;
+        Date birth=new Date();
+        int sex;
+        String name;
+        String phonenumber;
     }
     Person person;
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
