@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
 public class IntroActivity extends AppCompatActivity {
 
     private Handler handler;
@@ -27,6 +32,15 @@ public class IntroActivity extends AppCompatActivity {
         init();
 
         handler.postDelayed(runnable, 3000);
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs() // 마켓에 포팅하실땐 빼주세요.
+                .build();
+        ImageLoader.getInstance().init(config);
 
     }
 
