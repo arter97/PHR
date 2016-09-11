@@ -31,11 +31,20 @@ public class SymptomActivity extends AppCompatActivity {
         levelDialog.setTitle("Select level:");
         levelDialog.setContentView(R.layout.dialog_evaluation);
 
+        final Dialog moreDialog = new Dialog(this);
+        moreDialog.setContentView(R.layout.dialog_more);
+
         final TextView levelTxt = (TextView) levelDialog.findViewById(R.id.level_txt);
         final SeekBar levelSeek = (SeekBar) levelDialog.findViewById(R.id.level_seek);
 
+        //final TextView moreTxt = (TextView) levelDialog.findViewById(R.id.more_txt);
+        //final SeekBar moreSeek = (SeekBar) levelDialog.findViewById(R.id.more_seek);
+
         levelSeek.setMax(10);
         levelSeek.setProgress(10);
+
+        //moreSeek.setMax(10);
+        //moreSeek.setProgress(10);
 
         levelSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             //change to progress
@@ -54,7 +63,29 @@ public class SymptomActivity extends AppCompatActivity {
             }
         });
 
+        /*****
+        moreSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            //change to progress
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                moreTxt.setText(Integer.toString(progress));
+            }
+
+            //methods to implement but not necessary to amend
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+        *****/
+
         Button okBtn = (Button) levelDialog.findViewById(R.id.level_cancle);
+        Button level_more = (Button) levelDialog.findViewById(R.id.level_more);
+
+        Button goDialogBtn;
 
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +93,13 @@ public class SymptomActivity extends AppCompatActivity {
                 //respond to level
                 int chosenLevel = levelSeek.getProgress();
                 levelDialog.dismiss();
+            }
+        });
+
+        level_more.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                moreDialog.show();
             }
         });
 
