@@ -105,7 +105,7 @@ public class Fragment2 extends Fragment {
             }
         });
 
-        levelDialog.show();
+        //levelDialog.show();
 
         return view;
     }
