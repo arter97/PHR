@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 4"));
 
         /*********************************************************
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.));

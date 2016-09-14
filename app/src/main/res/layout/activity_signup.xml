@@ -1,6 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
@@ -22,31 +25,39 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!--  <ImageView
+                      android:layout_width="100dp"
+                      android:layout_height="100dp"
+                      android:layout_gravity="center_vertical|center_horizontal"
+                      android:layout_margin="20dp"
+                      android:src="@drawable/face"/>-->
+
                 <EditText
-                    android:id="@+id/account"
+                    android:id="@+id/user_account"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:hint="아이디"
-                    android:inputType="text"
-                    android:maxLength="5" />
+                    android:inputType="textEmailAddress"
+                    android:maxLength="25" />
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/user_password"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:hint="비밀번호"
-                    android:inputType="text"
-                    android:maxLength="3" />
+                    android:inputType="textPassword"
+                    android:maxLength="15" />
 
                 <EditText
-                    android:id="@+id/compare_password"
+                    android:id="@+id/user_compare_password"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:hint="비밀번호 확인"
-                    android:inputType="text" />
+                    android:maxLength="15"
+                    android:inputType="textPassword" />
 
             </LinearLayout>
         </LinearLayout>
@@ -61,13 +72,13 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:hint="이름"
                 android:inputType="text"
-                android:maxLength="2" />
+                android:maxLength="10" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,16 +87,26 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/user_man"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="남자" />
+                    android:background="@drawable/button_selector"
+                    android:text="남자"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
 
                 <Button
-                    android:layout_width="0dp"
+                    android:id="@+id/user_woman"
+                   android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:text="여자" />
+                    android:background="#4169E1"
+                    android:text="여자"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -99,26 +120,29 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="생일" />
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="생일"
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/birth"
+                    android:id="@+id/user_birth"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:hint="년도(4자)"
                     android:inputType="number"
-                    android:maxLength="2" />
+                    android:maxLength="4" />
 
                 <Spinner
-                    android:id="@+id/month"
+                    android:id="@+id/spinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:entries="@array/month" />
 
                 <EditText
-                    android:id="@+id/day"
+                    android:id="@+id/user_day"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -136,7 +160,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/phoneNumber"
+                    android:id="@+id/user_phoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
