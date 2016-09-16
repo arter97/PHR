@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Fragment2 extends Fragment {
+public class Fragment2 extends Fragment implements View.OnClickListener{
     GridView gridView;
 
     @Override
@@ -123,6 +123,26 @@ public class Fragment2 extends Fragment {
 
 
         return view;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.head_btn1:
+                break;
+
+            case R.id.head_btn2:
+
+                break;
+
+            case R.id.head_btn3:
+                break;
+
+            default:
+                break;
+        }
     }
 
 

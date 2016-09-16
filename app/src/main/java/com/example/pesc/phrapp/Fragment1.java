@@ -3,6 +3,7 @@ package com.example.pesc.phrapp;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.nfc.tech.NfcBarcode;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.jar.Manifest;
@@ -26,6 +28,10 @@ public class Fragment1 extends Fragment {
     SignupActivity signUpActivity;
     Button cameraButton;
     ImageView myImage;
+
+    private static final int REQUEST_MICROPHONE = 3;
+    private static final int REQUEST_EXTERNAL_STORAGE = 2;
+    private static final int REQUEST_CAMERA = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,13 +53,8 @@ public class Fragment1 extends Fragment {
         myImage = (ImageView) view.findViewById(R.id.myImage);
         cameraButton = (Button) view.findViewById(R.id.camera_button);
 
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 1);
-            }
-        });
+        cameraButton.setOnClickListener(buttonClickListener);
+
 
         String user_name = signUpActivity.getName();
         tab1_name.setText(user_name);
@@ -73,19 +74,52 @@ public class Fragment1 extends Fragment {
         String user_sex = signUpActivity.getSex();
         tab1_sex.setText(user_sex);
 
-        // 최초 권한 요청 or 사용자에 의한 요청
-        if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            //사용자가 임의로 취소 했을 시 재요청
-        }
-
         return view;
     }
 
+    private View.OnClickListener buttonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+            switch (id) {
+                case R.id.camera_button:
+                    int permissionCamera = ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.CAMERA);
+                    if (permissionCamera == PackageManager.PERMISSION_DENIED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.CAMERA}, REQUEST_CAMERA);
+                    } else {
+                        Toast.makeText(getActivity(), "camera permission authorized", Toast.LENGTH_LONG);
+                    }
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(intent);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        myImage.setImageURI(data.getData());
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CAMERA:
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (permission.equals(android.Manifest.permission.CAMERA)) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(getActivity(), "camera permission authorized", Toast.LENGTH_LONG);
+                        } else {
+                            Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG);
+                        }
+                    }
+                    break;
+
+                }
+            default:
+                break;
+        }
+
     }
-
-
 }
