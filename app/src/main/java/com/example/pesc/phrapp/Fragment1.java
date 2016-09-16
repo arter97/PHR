@@ -31,7 +31,10 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        int age = year - Integer.parseInt(signUpActivity.getAge()) + 1;
+        int age = year - Integer.parseInt(signUpActivity.getAge());
+
+        int cmonth = Calendar.getInstance().get(Calendar.MONTH);
+        int myMonth = Integer.parseInt(signUpActivity.getMonth());
 
         View view = inflater.inflate(R.layout.fragment_page1, container, false);
 
@@ -56,7 +59,19 @@ public class Fragment1 extends Fragment {
         tab1_name.setText(user_name);
 
         String user_age = signUpActivity.getAge();
-        tab1_age.setText(age + "세");
+
+        if (((cmonth + 1) - myMonth) >= 0) {
+            tab1_age.setText("만 " + age + "세" + ". " + (cmonth - myMonth + 1) + "개월");
+            System.out.println("=============================================" + cmonth);
+
+        } else {
+            tab1_age.setText("만 " + (age - 1) + "세" + ". " + (cmonth - myMonth + 13) + "개월");
+            System.out.println("=============================================" + cmonth);
+
+        }
+
+        String user_sex = signUpActivity.getSex();
+        tab1_sex.setText(user_sex);
 
         // 최초 권한 요청 or 사용자에 의한 요청
         if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.READ_EXTERNAL_STORAGE)

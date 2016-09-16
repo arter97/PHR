@@ -26,20 +26,10 @@
                     android:id="@+id/myImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/photo_frame"
-                    />
+                    android:background="@drawable/photo_frame" />
 
                 <TextView
                     android:id="@+id/tab1_name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/tab1_age"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -48,10 +38,22 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tab1_age"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/tab1_sex"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>
@@ -224,14 +226,14 @@
             android:layout_height="150dp">
 
             <Button
+                android:id="@+id/camera_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#4169E1"
-                android:id="@+id/camera_button"
-                android:text="건강검진 기록 입력하기"
+                android:text="건강검진 기록 입력하기(사진찍기)"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
