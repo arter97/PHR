@@ -32,7 +32,7 @@ public class Fragment1 extends Fragment {
     
     private static final int REQUEST_MICROPHONE = 3;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
-    private static final int REQUEST_CAMERA = 1;
+    public static final int REQUEST_CAMERA = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,10 +100,11 @@ public class Fragment1 extends Fragment {
                     if (permissionCamera == PackageManager.PERMISSION_DENIED) {
                         ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.CAMERA}, REQUEST_CAMERA);
                     } else {
-                        Toast.makeText(getActivity(), "camera permission authorized", Toast.LENGTH_LONG);
+                        Toast.makeText(getActivity(), "camera permission authorized", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, REQUEST_CAMERA);
+
                     }
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivity(intent);
                     break;
 
                 default:
@@ -122,7 +123,9 @@ public class Fragment1 extends Fragment {
                     int grantResult = grantResults[i];
                     if (permission.equals(android.Manifest.permission.CAMERA)) {
                         if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                            Toast.makeText(getActivity(), "camera permission authorized", Toast.LENGTH_LONG);
+                            Toast.makeText(getActivity(), "camera permission authorized", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, REQUEST_CAMERA);
                         } else {
                             Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG);
                         }
