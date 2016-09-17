@@ -38,10 +38,13 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        int age = year - Integer.parseInt(signUpActivity.getAge());
+        //int age = year - Integer.parseInt(signUpActivity.getAge());
+        int age = year - Person.birth.getYear();
+
 
         int cmonth = Calendar.getInstance().get(Calendar.MONTH);
-        int myMonth = Integer.parseInt(signUpActivity.getMonth());
+        //int myMonth = Integer.parseInt(signUpActivity.getMonth());
+        int myMonth = Person.birth.getMonth();
 
         View view = inflater.inflate(R.layout.fragment_page1, container, false);
 
@@ -57,10 +60,14 @@ public class Fragment1 extends Fragment {
         cameraButton.setOnClickListener(buttonClickListener);
 
 
-        String user_name = signUpActivity.getName();
+        //String user_name = signUpActivity.getName();
+        String user_name = Person.name;
+
         tab1_name.setText(user_name);
 
-        String user_age = signUpActivity.getAge();
+        //String user_age = signUpActivity.getAge();
+        String user_age = ""+age;
+
 
         if (((cmonth + 1) - myMonth) >= 0) {
             tab1_age.setText("만 " + age + "세" + ". " + (cmonth - myMonth + 1) + "개월");
@@ -72,7 +79,12 @@ public class Fragment1 extends Fragment {
 
         }
 
-        String user_sex = signUpActivity.getSex();
+        //String user_sex = signUpActivity.getSex();
+        String user_sex;
+        if(Person.sex==1)
+            user_sex="남";
+        else
+            user_sex="여";
         tab1_sex.setText(user_sex);
 
         return view;

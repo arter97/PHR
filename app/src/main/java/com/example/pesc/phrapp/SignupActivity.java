@@ -3,8 +3,10 @@ package com.example.pesc.phrapp;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,23 @@ import android.widget.ToggleButton;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -86,7 +105,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
 
-           /*     if (userId.getText().length() == 0 || userPwd.getText().length() == 0 || userPwd.getText().length() >= 10) {
+                if (userId.getText().length() == 0 || userPwd.getText().length() == 0 || userPwd.getText().length() >= 10) {
                     Toast.makeText(SignupActivity.this, "아이디와 비밀번호를 확인해주세요. 비밀번호는 10자 이상으로 입력해주세요.", Toast.LENGTH_LONG).show();
                 } else if (!userPwd.getText().toString().equals(comparePwd.getText().toString())) {
                     Toast.makeText(SignupActivity.this, "입력한 비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -102,10 +121,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
                 }
                 else {
-                    startActivity(intent);
+                    //startActivity(intent);
+                    new HttpAsyncTask().execute("http://igrus.mireene.com/applogin/register.php");
                 }
-*/
-                startActivity(intent);
+
+               // startActivity(intent);
 
             }
         });
@@ -216,4 +236,140 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
+    //////
+    ///login
+    //////
+
+    public class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+
+
+            //person.setName(etName.getText().toString());
+            //person.setCountry(etCountry.getText().toString());
+            //person.setTwitter(etTwitter.getText().toString());
+
+            return POST(urls[0]);
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equals("Did not work!"))
+            {
+                Toast.makeText(SignupActivity.this,"로그인 실패 인터넷 연결을 확인하세요",Toast.LENGTH_SHORT).show();
+            }
+            try {
+
+                JSONObject jobj=new JSONObject(result);
+                if(jobj.getString("error").equals("true"))
+                {
+                    Toast.makeText(SignupActivity.this,"이미 있는 아이디이거나 서버 오류입니다.",Toast.LENGTH_SHORT).show();
+                }
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+    public String POST(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            // 1. create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+
+            // 2. make POST request to the given URL
+            HttpPost httpPost = new HttpPost(url);
+
+            String json = "";
+
+            // 3. build jsonObject
+            JSONObject jsonObject = new JSONObject();
+            //jsonObject.accumulate("name", person.getName());
+            //jsonObject.accumulate("country", person.getCountry());
+            //jsonObject.accumulate("twitter", person.getTwitter());
+
+            // 4. convert JSONObject to JSON to String
+            json = jsonObject.toString();
+
+            // ** Alternative way to convert Person object to JSON string usin Jackson Lib
+            // ObjectMapper mapper = new ObjectMapper();
+            // json = mapper.writeValueAsString(person);
+
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(6);
+            nameValuePair.add(new BasicNameValuePair("userid", userId.getText().toString()));
+            nameValuePair.add(new BasicNameValuePair("password",userPwd.getText().toString() ));
+            nameValuePair.add(new BasicNameValuePair("name",name.getText().toString() ));
+            nameValuePair.add(new BasicNameValuePair("phonenumber",phone.getText().toString() ));
+
+            Log.d("monthandday",month+" "+day.getText().toString());
+
+            String monthtmp;
+            if(getMonth().length()==1) {
+                monthtmp="0"+getMonth();
+            }
+            else monthtmp=getMonth();
+            String daytmp;
+            if(day.getText().toString().length()==1) {
+                daytmp="0"+day.getText().toString();
+            }
+            else daytmp=day.getText().toString();
+            nameValuePair.add(new BasicNameValuePair("birth",birth.getText().toString()+monthtmp+daytmp));
+            String sextmp;
+            if(sex.equals("남자")) sextmp="1";
+            else sextmp="0";
+            nameValuePair.add(new BasicNameValuePair("sex",sextmp));
+
+
+
+
+            // 5. set json to StringEntity
+            //StringEntity se = new StringEntity(json);
+
+            // 6. set httpPost Entity
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair,"utf-8"));
+
+            // 7. Set some headers to inform server about the type of the content
+            //httpPost.setHeader("Accept", "application/json");
+            //httpPost.setHeader("Content-type", "application/json");
+
+            // 8. Execute POST request to the given URL
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+
+            // 9. receive response as inputStream
+            inputStream = httpResponse.getEntity().getContent();
+
+            // 10. convert inputstream to string
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "Did not work!";
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+        Log.d("http",result);
+
+        // 11. return result
+        return result;
+    }
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();
+        return result;
+
+    }
+
 }

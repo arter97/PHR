@@ -93,7 +93,8 @@ public class LoginActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //attemptSignUp();
+                Intent intent=new Intent(LoginActivity.this,SignupActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -139,10 +140,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONObject jobj=new JSONObject(result);
                 Person.name=jobj.getString("name");
+                Person.birth.setYear(Integer.parseInt(jobj.getString("birth").substring(0,4)));
+                Person.birth.setMonth(Integer.parseInt(jobj.getString("birth").substring(4,6)));
+                Person.birth.setDate(Integer.parseInt(jobj.getString("birth").substring(6,8)));
+
+
+
                 Person.phonenumber=jobj.getString("phonenumber");
                 Person.sex=jobj.getInt("sex");
 
-                Log.d("check",""+Person.name+" "+Person.phonenumber+" "+Person.sex);
+                Log.d("check",""+Person.name+" "+Person.phonenumber+" "+Person.sex+" ");
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
