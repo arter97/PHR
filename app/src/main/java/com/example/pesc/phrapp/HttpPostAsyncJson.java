@@ -3,46 +3,43 @@ package com.example.pesc.phrapp;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by saemy on 2016-09-11.
  */
 public class HttpPostAsyncJson {
 
-    private class Person
-    {
-        String id;
-        String password;
-        Date birth=new Date();
-        int sex;
-        String name;
-        String phonenumber;
-    }
-    Person person;
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    public class HttpAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
 
-            person = new Person();
+
+
             //person.setName(etName.getText().toString());
             //person.setCountry(etCountry.getText().toString());
             //person.setTwitter(etTwitter.getText().toString());
 
-            return POST(urls[0],person);
+            return POST(urls[0],new Person());
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override
@@ -76,15 +73,19 @@ public class HttpPostAsyncJson {
             // ObjectMapper mapper = new ObjectMapper();
             // json = mapper.writeValueAsString(person);
 
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(2);
+            nameValuePair.add(new BasicNameValuePair("userid", person.userid));
+            nameValuePair.add(new BasicNameValuePair("password", person.password));
+
             // 5. set json to StringEntity
-            StringEntity se = new StringEntity(json);
+            //StringEntity se = new StringEntity(json);
 
             // 6. set httpPost Entity
-            httpPost.setEntity(se);
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
             // 7. Set some headers to inform server about the type of the content
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json");
+            //httpPost.setHeader("Accept", "application/json");
+            //httpPost.setHeader("Content-type", "application/json");
 
             // 8. Execute POST request to the given URL
             HttpResponse httpResponse = httpclient.execute(httpPost);
