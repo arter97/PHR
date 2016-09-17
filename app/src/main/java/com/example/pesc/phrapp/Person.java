@@ -9,8 +9,9 @@ public class Person
 {
     public static String userid;
     public static String password;
-    public static Date birth=new Date();
+    public static Date birth=new Date(9999,01,01);
     public static int sex;
     public static String name;
     public static String phonenumber;
+
 }
