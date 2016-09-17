@@ -28,7 +28,8 @@ public class Fragment1 extends Fragment {
     SignupActivity signUpActivity;
     Button cameraButton;
     ImageView myImage;
-
+    Button btn;
+    
     private static final int REQUEST_MICROPHONE = 3;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
     private static final int REQUEST_CAMERA = 1;
