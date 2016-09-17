@@ -56,8 +56,8 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:hint="비밀번호 확인"
-                    android:maxLength="15"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:maxLength="15" />
 
             </LinearLayout>
         </LinearLayout>
@@ -99,7 +99,7 @@
 
                 <Button
                     android:id="@+id/user_woman"
-                   android:layout_width="0dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
@@ -184,7 +184,6 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#4169E1"
-                android:onClick="nextPage"
                 android:text="가입하기"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"

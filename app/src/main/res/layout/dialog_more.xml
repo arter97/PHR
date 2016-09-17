@@ -5,35 +5,10 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="8" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:background="#4169E1"
-            android:text="입력"
-            android:textColor="#ffffff"
-            android:textSize="15sp" />
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="0dp"
-        android:layout_weight="2.5"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TextView
@@ -41,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="주증상"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -49,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="● 코막힘"
-            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -87,6 +64,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:text="추가질문"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -120,9 +98,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
-            android:layout_width="300dp"
-            android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal">
@@ -132,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="● 붓기가 있습니까?"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -144,12 +123,12 @@
                 <CheckBox
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp" />
 
                 <CheckBox
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -166,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="● 붓기가 있습니까?"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -178,12 +158,12 @@
                 <CheckBox
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp" />
 
                 <CheckBox
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -200,6 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="● 붓기가 있습니까?"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -207,17 +188,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+
                 android:gravity="center">
 
                 <CheckBox
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp" />
 
                 <CheckBox
                     android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -236,6 +218,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="예상질병"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -251,6 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="1.감기"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -259,6 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="2.부비동염"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -267,9 +252,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="3.예상질병3"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/more_cancel"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="#4169E1"
+            android:text="확인"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 </LinearLayout>
