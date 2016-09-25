@@ -140,7 +140,7 @@ public class Fragment2 extends Fragment implements View.OnClickListener {
         return view;
     }
 
-
+    // 각 그림 눌렀을 때 dialog 띄우기.. 나중에..
     @Override
     public void onClick(View v) {
 

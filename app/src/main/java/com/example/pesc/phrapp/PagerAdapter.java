@@ -9,7 +9,7 @@ import android.widget.Button;
 import static android.view.View.*;
 
 /**
- * Created by PESC on 2016-09-14.
+ * Created by PES on 2016-09-14.
  */
 
 public class PagerAdapter extends FragmentStatePagerAdapter {

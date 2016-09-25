@@ -10,6 +10,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+/**
+ * Created by PES on 2016-09-10.
+ */
+
 public class IntroActivity extends AppCompatActivity {
 
     private Handler handler;

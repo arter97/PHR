@@ -74,7 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="키"
+                android:hint="@string/height"
+                android:layout_margin="5dp"
                 android:inputType="number"
                 android:maxLength="3" />
 
@@ -83,7 +84,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="몸무게"
+                android:hint="@string/weight"
+                android:layout_margin="5dp"
                 android:inputType="number"
                 android:maxLength="3" />
         </LinearLayout>
@@ -100,13 +102,13 @@
 
             <EditText
                 android:id="@+id/abo"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="일일 평균 심박수/심박 변이도/최저혈압/최고혈압/혈액형"
+                android:layout_margin="5dp"
+                android:hint="@string/abo"
                 android:inputType="text"
-                android:textSize="14sp"
-                android:maxLength="2" />
+                android:maxLines="2"
+                android:textSize="14sp" />
 
 
         </LinearLayout>
@@ -123,12 +125,12 @@
 
             <EditText
                 android:id="@+id/medicine"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="복약목록"
+                android:layout_margin="5dp"
+                android:hint="@string/medicine"
                 android:inputType="text"
-                android:maxLength="5" />
+                android:maxLines="2" />
 
         </LinearLayout>
 
@@ -144,12 +146,12 @@
 
             <EditText
                 android:id="@+id/allergy"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="알러지/금기목록"
-                android:inputType="number"
-                android:maxLength="3" />
+                android:layout_margin="5dp"
+                android:hint="@string/allergy"
+                android:inputType="text"
+                android:maxLines="2" />
         </LinearLayout>
 
         <LinearLayout
@@ -164,12 +166,12 @@
 
             <EditText
                 android:id="@+id/history"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="과거력"
+                android:layout_margin="5dp"
+                android:hint="@string/history"
                 android:inputType="text"
-                android:maxLength="5" />
+                android:maxLines="2" />
 
         </LinearLayout>
 
@@ -185,10 +187,10 @@
 
             <EditText
                 android:id="@+id/sleepTime"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="수면시간"
+                android:layout_margin="5dp"
+                android:hint="@string/sleepTime"
                 android:inputType="number"
                 android:maxLength="2" />
 
@@ -207,11 +209,11 @@
 
             <EditText
                 android:id="@+id/dailyStride"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="일일 걸음수"
-                android:inputType="text"
+                android:layout_margin="5dp"
+                android:hint="@string/dailyStride"
+                android:inputType="number"
                 android:maxLength="5" />
 
         </LinearLayout>
@@ -219,8 +221,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:paddingBottom="30dp"
         android:orientation="vertical">
 
         <Button
@@ -232,7 +236,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:background="#4169E1"
-            android:text="건강검진 기록 입력하기(사진찍기)"
+            android:text="@string/capture"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -246,15 +250,11 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
             android:background="#4169E1"
-            android:text="직접 입력하기"
+            android:text="@string/manual"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"></LinearLayout>
 
 </LinearLayout>

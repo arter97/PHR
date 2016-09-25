@@ -16,6 +16,23 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- Strings related to fragment1-->
+    <string name="height">키(cm)</string>
+    <string name="weight">몸무게(kg)</string>
+    <string name="abo">일일 평균 심박수/심박 변이도/최저혈압/최고혈압/혈액형</string>
+    <string name="medicine">복약목록</string>
+    <string name="allergy">알러지/금기목록</string>
+    <string name="history">과거력</string>
+    <string name="sleepTime">수면시간</string>
+    <string name="dailyStride">일일 걸음수</string>
+    <string name="capture">건강검진 기록 입력하기(사진찍기)</string>
+    <string name="manual">직접 입력하기</string>
+
+    <!-- Strings related to fragment1_edit1-->
+    <string name="edit">수정하기</string>
+
+
     <string name="title_activity_main">MainActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -28,7 +28,7 @@ public class Fragment1 extends Fragment {
     Button cameraButton;
     Button manualButton;
     ImageView myImage;
-    static EditText height, weigth, abo, medicine, allergy, history, sleepTime, dailyStride;
+    static EditText height, weight, abo, medicine, allergy, history, sleepTime, dailyStride;
 
     private static final int REQUEST_MICROPHONE = 3;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
@@ -52,7 +52,7 @@ public class Fragment1 extends Fragment {
 
         myImage = (ImageView) view.findViewById(R.id.myImage);
         height = (EditText) view.findViewById(R.id.height);
-        weigth = (EditText) view.findViewById(R.id.weight);
+        weight = (EditText) view.findViewById(R.id.weight);
         abo = (EditText) view.findViewById(R.id.abo);
         medicine = (EditText) view.findViewById(R.id.medicine);
         allergy = (EditText) view.findViewById(R.id.allergy);
@@ -68,11 +68,28 @@ public class Fragment1 extends Fragment {
         manualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.root, new EditedFragment());
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
+                if (height.getText().length() == 0 || weight.getText().length() == 0) {
+                    Toast.makeText(getActivity(), "키와 몸무게를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (getABO().length() == 0) {
+                    Toast.makeText(getActivity(), "일일 평균 심박수, 혈액형란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (getMedicine().length() == 0) {
+                    Toast.makeText(getActivity(), "복약목록란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (getAllergy().length() == 0) {
+                    Toast.makeText(getActivity(), "알러지/금기목록란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (getHistory().length() == 0) {
+                    Toast.makeText(getActivity(), "과거력란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (getSleepTime().length() == 0) {
+                    Toast.makeText(getActivity(), "수면시간란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (getDailyStride().length() == 0) {
+                    Toast.makeText(getActivity(), "일일 걸음수란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.root, new EditedFragment());
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
             }
         });
 
@@ -155,28 +172,35 @@ public class Fragment1 extends Fragment {
 
     }
 
-    public static String getHeight(){
+    public static String getHeight() {
         return height.getText().toString();
     }
-    public static String getWeight(){
-        return weigth.getText().toString();
+
+    public static String getWeight() {
+        return weight.getText().toString();
     }
-    public static String getABO(){
+
+    public static String getABO() {
         return abo.getText().toString();
     }
-    public static String getMedicine(){
+
+    public static String getMedicine() {
         return medicine.getText().toString();
     }
-    public static String getAllergy(){
+
+    public static String getAllergy() {
         return allergy.getText().toString();
     }
-    public static String getHistory(){
+
+    public static String getHistory() {
         return history.getText().toString();
     }
-    public static String getSleepTime(){
+
+    public static String getSleepTime() {
         return sleepTime.getText().toString();
     }
-    public static String getDailyStride(){
+
+    public static String getDailyStride() {
         return dailyStride.getText().toString();
     }
 }
