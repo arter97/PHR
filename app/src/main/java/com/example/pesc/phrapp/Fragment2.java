@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Fragment2 extends Fragment implements View.OnClickListener{
+public class Fragment2 extends Fragment implements View.OnClickListener {
     GridView gridView;
 
     @Override
@@ -50,7 +50,6 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             }
         });
 
-
         /* SeekBar 부분, 통증 선택하기 */
         final TextView levelTxt = (TextView) levelDialog.findViewById(R.id.level_txt);
         final SeekBar levelSeek = (SeekBar) levelDialog.findViewById(R.id.level_seek);
@@ -77,8 +76,8 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             }
         });
 
-      /*  final TextView moreTxt = (TextView) levelDialog.findViewById(R.id.more_txt);
-        final SeekBar moreSeek = (SeekBar) levelDialog.findViewById(R.id.more_seek);
+        final TextView moreTxt = (TextView) moreDialog.findViewById(R.id.more_txt);
+        final SeekBar moreSeek = (SeekBar) moreDialog.findViewById(R.id.more_seek);
 
         moreSeek.setMax(10);
         moreSeek.setProgress(10);
@@ -98,14 +97,24 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
-        });*/
+        });
 
-        Button okBtn = (Button) levelDialog.findViewById(R.id.level_cancle);
+        Button cancel_button = (Button) levelDialog.findViewById(R.id.level_cancel);
+        Button cancel2_button = (Button) levelDialog.findViewById(R.id.level_cancel2);
         Button level_more = (Button) levelDialog.findViewById(R.id.level_more);
-
+        Button more_cancel = (Button) moreDialog.findViewById(R.id.more_cancel);
         Button goDialogBtn;
 
-        okBtn.setOnClickListener(new View.OnClickListener() {
+        cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //respond to level
+                int chosenLevel = levelSeek.getProgress();
+                levelDialog.dismiss();
+            }
+        });
+
+        cancel2_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //respond to level
@@ -121,6 +130,12 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             }
         });
 
+        more_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moreDialog.dismiss();
+            }
+        });
 
         return view;
     }

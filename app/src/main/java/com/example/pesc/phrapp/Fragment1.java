@@ -2,34 +2,34 @@ package com.example.pesc.phrapp;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
-import android.nfc.tech.NfcBarcode;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.jar.Manifest;
 
 public class Fragment1 extends Fragment {
 
     TextView tab1_name;
     TextView tab1_age;
     TextView tab1_sex;
-    SignupActivity signUpActivity;
     Button cameraButton;
+    Button manualButton;
     ImageView myImage;
-    Button btn;
-    
+    static EditText height, weigth, abo, medicine, allergy, history, sleepTime, dailyStride;
+
     private static final int REQUEST_MICROPHONE = 3;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
     public static final int REQUEST_CAMERA = 1;
@@ -40,25 +40,41 @@ public class Fragment1 extends Fragment {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         //int age = year - Integer.parseInt(signUpActivity.getAge());
         int age = year - Person.birth.getYear();
-
-
         int cmonth = Calendar.getInstance().get(Calendar.MONTH);
         //int myMonth = Integer.parseInt(signUpActivity.getMonth());
         int myMonth = Person.birth.getMonth();
 
         View view = inflater.inflate(R.layout.fragment_page1, container, false);
 
-        signUpActivity = new SignupActivity();
-
         tab1_name = (TextView) view.findViewById(R.id.tab1_name);
         tab1_age = (TextView) view.findViewById(R.id.tab1_age);
         tab1_sex = (TextView) view.findViewById(R.id.tab1_sex);
 
         myImage = (ImageView) view.findViewById(R.id.myImage);
-        cameraButton = (Button) view.findViewById(R.id.camera_button);
+        height = (EditText) view.findViewById(R.id.height);
+        weigth = (EditText) view.findViewById(R.id.weight);
+        abo = (EditText) view.findViewById(R.id.abo);
+        medicine = (EditText) view.findViewById(R.id.medicine);
+        allergy = (EditText) view.findViewById(R.id.allergy);
+        history = (EditText) view.findViewById(R.id.history);
+        sleepTime = (EditText) view.findViewById(R.id.sleepTime);
+        dailyStride = (EditText) view.findViewById(R.id.dailyStride);
 
+
+        cameraButton = (Button) view.findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(buttonClickListener);
 
+        manualButton = (Button) view.findViewById(R.id.manual_button);
+        manualButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.root, new EditedFragment());
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         //String user_name = signUpActivity.getName();
         String user_name = Person.name;
@@ -66,7 +82,7 @@ public class Fragment1 extends Fragment {
         tab1_name.setText(user_name);
 
         //String user_age = signUpActivity.getAge();
-        String user_age = ""+age;
+        String user_age = "" + age;
 
 
         if (((cmonth + 1) - myMonth) >= 0) {
@@ -81,10 +97,10 @@ public class Fragment1 extends Fragment {
 
         //String user_sex = signUpActivity.getSex();
         String user_sex;
-        if(Person.sex==1)
-            user_sex="남";
+        if (Person.sex == 1)
+            user_sex = "남";
         else
-            user_sex="여";
+            user_sex = "여";
         tab1_sex.setText(user_sex);
 
         return view;
@@ -127,7 +143,7 @@ public class Fragment1 extends Fragment {
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(intent, REQUEST_CAMERA);
                         } else {
-                            Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG);
+                            Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG).show();
                         }
                     }
                     break;
@@ -138,4 +154,31 @@ public class Fragment1 extends Fragment {
         }
 
     }
+
+    public static String getHeight(){
+        return height.getText().toString();
+    }
+    public static String getWeight(){
+        return weigth.getText().toString();
+    }
+    public static String getABO(){
+        return abo.getText().toString();
+    }
+    public static String getMedicine(){
+        return medicine.getText().toString();
+    }
+    public static String getAllergy(){
+        return allergy.getText().toString();
+    }
+    public static String getHistory(){
+        return history.getText().toString();
+    }
+    public static String getSleepTime(){
+        return sleepTime.getText().toString();
+    }
+    public static String getDailyStride(){
+        return dailyStride.getText().toString();
+    }
 }
+
+
