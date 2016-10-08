@@ -27,7 +27,7 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
         levelDialog.setTitle("Select level:");
         levelDialog.setContentView(R.layout.dialog_evaluation);
 
-        final Dialog moreDialog = new Dialog(getActivity());
+        final Dialog moreDialog = new Dialog(getContext());
         moreDialog.setContentView(R.layout.dialog_more);
 
         int image[] = {
@@ -77,8 +77,8 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             }
         });
 
-        final TextView moreTxt = (TextView) levelDialog.findViewById(R.id.more_txt);
-        final SeekBar moreSeek = (SeekBar) levelDialog.findViewById(R.id.more_seek);
+        final TextView moreTxt = (TextView) moreDialog.findViewById(R.id.more_txt);
+        final SeekBar moreSeek = (SeekBar) moreDialog.findViewById(R.id.more_seek);
 
         moreSeek.setMax(10);
         moreSeek.setProgress(10);

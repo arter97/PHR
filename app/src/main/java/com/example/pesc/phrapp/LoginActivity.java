@@ -169,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
 
             } catch (JSONException e) {
+                Toast.makeText(LoginActivity.this,"로그인 실패",Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
 
