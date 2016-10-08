@@ -1,5 +1,6 @@
 package com.example.pesc.phrapp;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Intent intent=new Intent(this,AuthdoctorActivity.class);
+            startActivity(intent);
+            //TODO : 임시로 발표용으로 인증화면 만듬
             return true;
         }
 

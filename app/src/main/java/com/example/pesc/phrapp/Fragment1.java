@@ -78,7 +78,7 @@ public class Fragment1 extends Fragment {
         tab1_weight =(EditText) view.findViewById(R.id.tab1_weight);
 
         //TODO : EditText에 적혀있는 내용을 서버로 옮겨야함
-        
+
 
         //String user_name = signUpActivity.getName();
         String user_name = Person.name;
