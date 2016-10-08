@@ -77,7 +77,7 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             }
         });
 
-      /*  final TextView moreTxt = (TextView) levelDialog.findViewById(R.id.more_txt);
+        final TextView moreTxt = (TextView) levelDialog.findViewById(R.id.more_txt);
         final SeekBar moreSeek = (SeekBar) levelDialog.findViewById(R.id.more_seek);
 
         moreSeek.setMax(10);
@@ -98,9 +98,9 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
-        });*/
+        });
 
-        Button okBtn = (Button) levelDialog.findViewById(R.id.level_cancle);
+        Button okBtn = (Button) levelDialog.findViewById(R.id.level_cancel);
         Button level_more = (Button) levelDialog.findViewById(R.id.level_more);
 
         Button goDialogBtn;
