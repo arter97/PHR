@@ -15,16 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="주증상"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="● 코막힘"
+            android:text="● 아픈정도를 표현해주세요."
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -121,6 +112,7 @@
                 android:gravity="center">
 
                 <CheckBox
+                    android:id="@+id/symptom_sub_yescheck1"
                     android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="20dp" />
@@ -156,6 +148,7 @@
                 android:gravity="center">
 
                 <CheckBox
+                    android:id="@+id/symptom_sub_yescheck2"
                     android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="20dp" />
@@ -192,6 +185,7 @@
                 android:gravity="center">
 
                 <CheckBox
+                    android:id="@+id/symptom_sub_yescheck3"
                     android:layout_width="30dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="20dp" />
@@ -258,7 +252,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/more_cancel"
+            android:id="@+id/more_confirm"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"

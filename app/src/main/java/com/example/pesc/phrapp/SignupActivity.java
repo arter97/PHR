@@ -169,7 +169,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     sex = null;
                 }
                 break;
-            case R.id.head_btn1:
 
             default:
                 break;

@@ -14,4 +14,9 @@ public class Person
     public static String name;
     public static String phonenumber;
 
+    public static String st_place;
+    public static String st_main;
+    public static int st_scale;
+    public static String st_sub;
+
 }

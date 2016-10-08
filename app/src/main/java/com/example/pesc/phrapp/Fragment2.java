@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +19,26 @@ import android.widget.Toast;
 
 public class Fragment2 extends Fragment implements View.OnClickListener{
     GridView gridView;
+    Button symptom_main_btn1;
+    Button symptom_main_btn2;
+    Button symptom_main_btn3;
+    Button more_confirm;
+    private String tmp_st_place;
+    private String tmp_st_main;
+    private int tmp_st_scale;
+    private String tmp_st_sub="";
+    private Dialog levelDialog;
+    private Dialog moreDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
          /* Dialog 부분 */
-        final Dialog levelDialog = new Dialog(getContext());
+        levelDialog = new Dialog(getContext());
         levelDialog.setTitle("Select level:");
         levelDialog.setContentView(R.layout.dialog_evaluation);
 
-        final Dialog moreDialog = new Dialog(getContext());
+        moreDialog = new Dialog(getContext());
         moreDialog.setContentView(R.layout.dialog_more);
 
         int image[] = {
@@ -45,13 +56,31 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getActivity(), "position:" + position, Toast.LENGTH_SHORT).show();
+                if(position==0) tmp_st_place="머리";
+                else if(position==1) tmp_st_place="얼굴";
+                else if(position==2) tmp_st_place="목";
+
+                Toast.makeText(getActivity(), "position:" + position +" , krplacename: "+tmp_st_place, Toast.LENGTH_SHORT).show();
                 levelDialog.show();
+
             }
         });
 
 
+        symptom_main_btn1=(Button)levelDialog.findViewById(R.id.symptom_main_btn1);
+        symptom_main_btn2=(Button)levelDialog.findViewById(R.id.symptom_main_btn2);
+        symptom_main_btn3=(Button)levelDialog.findViewById(R.id.symptom_main_btn3);
+
+        more_confirm=(Button)moreDialog.findViewById(R.id.more_confirm);
+
+        symptom_main_btn1.setOnClickListener(this);
+        symptom_main_btn2.setOnClickListener(this);
+        symptom_main_btn3.setOnClickListener(this);
+
+        more_confirm.setOnClickListener(this);
+
         /* SeekBar 부분, 통증 선택하기 */
+/*
         final TextView levelTxt = (TextView) levelDialog.findViewById(R.id.level_txt);
         final SeekBar levelSeek = (SeekBar) levelDialog.findViewById(R.id.level_seek);
 
@@ -76,7 +105,7 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
 
             }
         });
-
+*/
         final TextView moreTxt = (TextView) moreDialog.findViewById(R.id.more_txt);
         final SeekBar moreSeek = (SeekBar) moreDialog.findViewById(R.id.more_seek);
 
@@ -88,6 +117,7 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 moreTxt.setText(Integer.toString(progress));
+                tmp_st_scale=progress;
             }
 
             //methods to implement but not necessary to amend
@@ -101,7 +131,8 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
         });
 
         Button okBtn = (Button) levelDialog.findViewById(R.id.level_cancel);
-        Button level_more = (Button) levelDialog.findViewById(R.id.level_more);
+
+ //       Button level_more = (Button) levelDialog.findViewById(R.id.level_more);
 
         Button goDialogBtn;
 
@@ -109,18 +140,19 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 //respond to level
-                int chosenLevel = levelSeek.getProgress();
+
+                //int chosenLevel = levelSeek.getProgress();
                 levelDialog.dismiss();
             }
         });
-
+/*
         level_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 moreDialog.show();
             }
         });
-
+*/
 
         return view;
     }
@@ -130,16 +162,27 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.head_btn1:
+            case R.id.symptom_main_btn1:
+                tmp_st_main=symptom_main_btn1.getText().toString();
+                moreDialog.show();
                 break;
 
-            case R.id.head_btn2:
-
+            case R.id.symptom_main_btn2:
+                tmp_st_main=symptom_main_btn2.getText().toString();
+                moreDialog.show();
                 break;
 
-            case R.id.head_btn3:
+            case R.id.symptom_main_btn3:
+                tmp_st_main=symptom_main_btn3.getText().toString();
+                moreDialog.show();
                 break;
-
+            case R.id.more_confirm:
+                levelDialog.dismiss();
+                Person.st_main=tmp_st_main;
+                Person.st_place=tmp_st_place;
+                Person.st_scale=tmp_st_scale;
+                Person.st_sub=tmp_st_sub;
+                break;
             default:
                 break;
         }
