@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,14 @@ public class Fragment1 extends Fragment {
     private static final int REQUEST_MICROPHONE = 3;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
     public static final int REQUEST_CAMERA = 1;
+    private EditText tab1_abo;
+    private EditText tab1_allergy;
+    private EditText tab1_dailyStride;
+    private EditText tab1_height;
+    private EditText tab1_history;
+    private EditText tab1_medicine;
+    private EditText tab1_sleepTime;
+    private EditText tab1_weight;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,6 +68,17 @@ public class Fragment1 extends Fragment {
 
         cameraButton.setOnClickListener(buttonClickListener);
 
+        tab1_abo=(EditText) view.findViewById(R.id.tab1_abo);
+        tab1_allergy=(EditText) view.findViewById(R.id.tab1_allergy);
+        tab1_dailyStride =(EditText) view.findViewById(R.id.tab1_dailyStride);
+        tab1_height =(EditText) view.findViewById(R.id.tab1_height);
+        tab1_history =(EditText) view.findViewById(R.id.tab1_history);
+        tab1_medicine =(EditText) view.findViewById(R.id.tab1_medicine);
+        tab1_sleepTime =(EditText) view.findViewById(R.id.tab1_sleepTime);
+        tab1_weight =(EditText) view.findViewById(R.id.tab1_weight);
+
+        //TODO : EditText에 적혀있는 내용을 서버로 옮겨야함
+        
 
         //String user_name = signUpActivity.getName();
         String user_name = Person.name;

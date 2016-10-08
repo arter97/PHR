@@ -74,7 +74,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/height"
+                    android:id="@+id/tab1_height"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -83,7 +83,7 @@
                     android:maxLength="3" />
 
                 <EditText
-                    android:id="@+id/weight"
+                    android:id="@+id/tab1_weight"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -103,7 +103,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/abo"
+                    android:id="@+id/tab1_abo"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -125,7 +125,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/medicine"
+                    android:id="@+id/tab1_medicine"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -146,7 +146,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/allergy"
+                    android:id="@+id/tab1_allergy"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -166,7 +166,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/history"
+                    android:id="@+id/tab1_history"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -187,7 +187,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/sleepTime"
+                    android:id="@+id/tab1_sleepTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -209,7 +209,7 @@
                     android:layout_height="match_parent" />
 
                 <EditText
-                    android:id="@+id/dailyStride"
+                    android:id="@+id/tab1_dailyStride"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
