@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 4"));
+        tabLayout.addTab(tabLayout.newTab().setText("기본정보"));
+        tabLayout.addTab(tabLayout.newTab().setText("증상입력"));
+        tabLayout.addTab(tabLayout.newTab().setText("PHR관리"));
+        tabLayout.addTab(tabLayout.newTab().setText("타임라인"));
 
         /*********************************************************
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.));

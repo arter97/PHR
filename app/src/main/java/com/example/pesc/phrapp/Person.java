@@ -21,9 +21,9 @@ public class Person
 
     public static float d_height; //detail height
     public static float d_weight;
-    public static String abo;
-    public static String allergy;
-    public static String history;
-    public static String sleeptime;
-    public static String dailystride;
+    public static String d_abo;
+    public static String d_allergy;
+    public static String d_history;
+    public static String d_sleeptime;
+    public static String d_dailystride;
 }
