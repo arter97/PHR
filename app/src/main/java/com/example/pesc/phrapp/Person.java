@@ -19,4 +19,11 @@ public class Person
     public static int st_scale;
     public static String st_sub;
 
+    public static float d_height; //detail height
+    public static float d_weight;
+    public static String abo;
+    public static String allergy;
+    public static String history;
+    public static String sleeptime;
+    public static String dailystride;
 }
