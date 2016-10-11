@@ -104,8 +104,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
 
-                if (userId.getText().length() == 0 || userPwd.getText().length() == 0 || userPwd.getText().length() <= 7) {
-                    Toast.makeText(SignupActivity.this, "아이디와 비밀번호를 확인해주세요. 비밀번호는 6자 이상으로 입력해주세요.", Toast.LENGTH_LONG).show();
+                if (userId.getText().length() == 0 || userPwd.getText().length() < 10) {
+                    Toast.makeText(SignupActivity.this, "아이디와 비밀번호를 확인해주세요. 비밀번호는 10자 이상으로 입력해주세요.", Toast.LENGTH_LONG).show();
                 } else if (!userPwd.getText().toString().equals(comparePwd.getText().toString())) {
                     Toast.makeText(SignupActivity.this, "입력한 비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show();
                     comparePwd.hasFocus();
@@ -168,8 +168,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     sex = null;
                 }
                 break;
-            case R.id.head_btn1:
-
             default:
                 break;
         }
