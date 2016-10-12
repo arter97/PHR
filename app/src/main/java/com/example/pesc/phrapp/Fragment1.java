@@ -2,12 +2,12 @@ package com.example.pesc.phrapp;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
+import android.nfc.tech.NfcBarcode;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,20 +19,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.jar.Manifest;
 
 public class Fragment1 extends Fragment {
 
     TextView tab1_name;
     TextView tab1_age;
     TextView tab1_sex;
+    SignupActivity signUpActivity;
     Button cameraButton;
-    Button manualButton;
     ImageView myImage;
-    static EditText height, weight, abo, medicine, allergy, history, sleepTime, dailyStride;
-
+    Button btn;
+    
     private static final int REQUEST_MICROPHONE = 3;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
     public static final int REQUEST_CAMERA = 1;
+    private EditText tab1_abo;
+    private EditText tab1_allergy;
+    private EditText tab1_dailyStride;
+    private EditText tab1_height;
+    private EditText tab1_history;
+    private EditText tab1_medicine;
+    private EditText tab1_sleepTime;
+    private EditText tab1_weight;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,58 +49,36 @@ public class Fragment1 extends Fragment {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         //int age = year - Integer.parseInt(signUpActivity.getAge());
         int age = year - Person.birth.getYear();
+
+
         int cmonth = Calendar.getInstance().get(Calendar.MONTH);
         //int myMonth = Integer.parseInt(signUpActivity.getMonth());
         int myMonth = Person.birth.getMonth();
 
         View view = inflater.inflate(R.layout.fragment_page1, container, false);
 
+        signUpActivity = new SignupActivity();
+
         tab1_name = (TextView) view.findViewById(R.id.tab1_name);
         tab1_age = (TextView) view.findViewById(R.id.tab1_age);
         tab1_sex = (TextView) view.findViewById(R.id.tab1_sex);
 
         myImage = (ImageView) view.findViewById(R.id.myImage);
-        height = (EditText) view.findViewById(R.id.height);
-        weight = (EditText) view.findViewById(R.id.weight);
-        abo = (EditText) view.findViewById(R.id.abo);
-        medicine = (EditText) view.findViewById(R.id.medicine);
-        allergy = (EditText) view.findViewById(R.id.allergy);
-        history = (EditText) view.findViewById(R.id.history);
-        sleepTime = (EditText) view.findViewById(R.id.sleepTime);
-        dailyStride = (EditText) view.findViewById(R.id.dailyStride);
-
-
         cameraButton = (Button) view.findViewById(R.id.camera_button);
+
         cameraButton.setOnClickListener(buttonClickListener);
 
-        manualButton = (Button) view.findViewById(R.id.manual_button);
-        manualButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        tab1_abo=(EditText) view.findViewById(R.id.tab1_abo);
+        tab1_allergy=(EditText) view.findViewById(R.id.tab1_allergy);
+        tab1_dailyStride =(EditText) view.findViewById(R.id.tab1_dailyStride);
+        tab1_height =(EditText) view.findViewById(R.id.tab1_height);
+        tab1_history =(EditText) view.findViewById(R.id.tab1_history);
+        tab1_medicine =(EditText) view.findViewById(R.id.tab1_medicine);
+        tab1_sleepTime =(EditText) view.findViewById(R.id.tab1_sleepTime);
+        tab1_weight =(EditText) view.findViewById(R.id.tab1_weight);
 
-                if (height.getText().length() == 0 || weight.getText().length() == 0) {
-                    Toast.makeText(getActivity(), "키와 몸무게를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (getABO().length() == 0) {
-                    Toast.makeText(getActivity(), "일일 평균 심박수, 혈액형란을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (getMedicine().length() == 0) {
-                    Toast.makeText(getActivity(), "복약목록란을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (getAllergy().length() == 0) {
-                    Toast.makeText(getActivity(), "알러지/금기목록란을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (getHistory().length() == 0) {
-                    Toast.makeText(getActivity(), "과거력란을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (getSleepTime().length() == 0) {
-                    Toast.makeText(getActivity(), "수면시간란을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (getDailyStride().length() == 0) {
-                    Toast.makeText(getActivity(), "일일 걸음수란을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else {
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.root, new EditedFragment());
-                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }
-            }
-        });
+        //TODO : EditText에 적혀있는 내용을 서버로 옮겨야함
+
 
         //String user_name = signUpActivity.getName();
         String user_name = Person.name;
@@ -99,7 +86,7 @@ public class Fragment1 extends Fragment {
         tab1_name.setText(user_name);
 
         //String user_age = signUpActivity.getAge();
-        String user_age = "" + age;
+        String user_age = ""+age;
 
 
         if (((cmonth + 1) - myMonth) >= 0) {
@@ -114,10 +101,10 @@ public class Fragment1 extends Fragment {
 
         //String user_sex = signUpActivity.getSex();
         String user_sex;
-        if (Person.sex == 1)
-            user_sex = "남";
+        if(Person.sex==1)
+            user_sex="남";
         else
-            user_sex = "여";
+            user_sex="여";
         tab1_sex.setText(user_sex);
 
         return view;
@@ -160,7 +147,7 @@ public class Fragment1 extends Fragment {
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(intent, REQUEST_CAMERA);
                         } else {
-                            Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "camera permission denied", Toast.LENGTH_LONG);
                         }
                     }
                     break;
@@ -171,38 +158,4 @@ public class Fragment1 extends Fragment {
         }
 
     }
-
-    public static String getHeight() {
-        return height.getText().toString();
-    }
-
-    public static String getWeight() {
-        return weight.getText().toString();
-    }
-
-    public static String getABO() {
-        return abo.getText().toString();
-    }
-
-    public static String getMedicine() {
-        return medicine.getText().toString();
-    }
-
-    public static String getAllergy() {
-        return allergy.getText().toString();
-    }
-
-    public static String getHistory() {
-        return history.getText().toString();
-    }
-
-    public static String getSleepTime() {
-        return sleepTime.getText().toString();
-    }
-
-    public static String getDailyStride() {
-        return dailyStride.getText().toString();
-    }
 }
-
-

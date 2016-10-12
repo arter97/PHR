@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
- * Created by PES on 2016-09-10.
+ * Created by PESC on 2016-09-10.
  */
-
 public class GridAdapter extends BaseAdapter {
 
     Context context;

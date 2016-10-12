@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -168,6 +169,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     sex = null;
                 }
                 break;
+
             default:
                 break;
         }

@@ -3,18 +3,13 @@ package com.example.pesc.phrapp;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.View;
-import android.widget.Button;
-
-import static android.view.View.*;
 
 /**
- * Created by PES on 2016-09-14.
+ * Created by PESC on 2016-09-14.
  */
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int _numOfTabs;
-    Button manualButton;
 
     public PagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
@@ -26,7 +21,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                RootFragment tab1 = new RootFragment();
+                Fragment1 tab1 = new Fragment1();
                 return tab1;
             case 1:
                 Fragment2 tab2 = new Fragment2();

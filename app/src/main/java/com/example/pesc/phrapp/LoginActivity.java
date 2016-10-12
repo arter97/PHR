@@ -112,8 +112,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button signInButton = (Button) findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(new OnClickListener() {
+        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -127,11 +127,6 @@ public class LoginActivity extends AppCompatActivity {
     {
         Person.userid=mEmailView.getText().toString();
         Person.password=mPasswordView.getText().toString();
-
-        if(Person.userid.length() ==0 || Person.password.length() ==0){
-            Toast.makeText(LoginActivity.this,"아이디와 패스워드를 입력해주세요.",Toast.LENGTH_SHORT).show();
-        }
-
         Log.d("texter",Person.userid);
         Log.d("texter",Person.password);
         new HttpAsyncTask().execute("http://igrus.mireene.com/applogin/login.php");
@@ -174,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
 
             } catch (JSONException e) {
+                Toast.makeText(LoginActivity.this,"로그인 실패",Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
 

@@ -1,5 +1,6 @@
 package com.example.pesc.phrapp;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -29,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 4"));
+        tabLayout.addTab(tabLayout.newTab().setText("기본정보"));
+        tabLayout.addTab(tabLayout.newTab().setText("증상입력"));
+        tabLayout.addTab(tabLayout.newTab().setText("PHR관리"));
+        tabLayout.addTab(tabLayout.newTab().setText("타임라인"));
 
         /*********************************************************
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.));
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Intent intent=new Intent(this,AuthdoctorActivity.class);
+            startActivity(intent);
+            //TODO : 임시로 발표용으로 인증화면 만듬
             return true;
         }
 
