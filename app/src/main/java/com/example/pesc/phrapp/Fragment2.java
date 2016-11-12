@@ -41,6 +41,7 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
     Button symptom_main_btn1;
     Button symptom_main_btn2;
     Button symptom_main_btn3;
+    Button find_hospital;
     Button more_confirm;
     private String tmp_st_place;
     private String tmp_st_main;
@@ -90,16 +91,17 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             }
         });
 
-
         symptom_main_btn1=(Button)levelDialog.findViewById(R.id.symptom_main_btn1);
         symptom_main_btn2=(Button)levelDialog.findViewById(R.id.symptom_main_btn2);
         symptom_main_btn3=(Button)levelDialog.findViewById(R.id.symptom_main_btn3);
+        find_hospital=(Button)levelDialog.findViewById(R.id.level_hospital);
 
         more_confirm=(Button)moreDialog.findViewById(R.id.more_confirm);
 
         symptom_main_btn1.setOnClickListener(this);
         symptom_main_btn2.setOnClickListener(this);
         symptom_main_btn3.setOnClickListener(this);
+        find_hospital.setOnClickListener(this);
 
         more_confirm.setOnClickListener(this);
 
@@ -199,6 +201,10 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             case R.id.symptom_main_btn3:
                 tmp_st_main=symptom_main_btn3.getText().toString();
                 moreDialog.show();
+                break;
+            case R.id.level_hospital:
+                GPSHelper.initiateGPSservice(getContext());
+                levelDialog.dismiss();
                 break;
             case R.id.more_confirm:
                 levelDialog.dismiss();
