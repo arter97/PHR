@@ -31,6 +31,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/evaluation_title"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -38,7 +39,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="1dp"
-            android:text="머리"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -36,6 +36,8 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".SignupActivity"></activity>
         <activity android:name=".AuthdoctorActivity" />
+        <activity android:name=".MapView"
+            android:theme="@style/AppTheme.FullScreen" />
 
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->

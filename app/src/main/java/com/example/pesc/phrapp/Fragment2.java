@@ -27,6 +27,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,8 +44,8 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
     Button symptom_main_btn3;
     Button find_hospital;
     Button more_confirm;
-    private String tmp_st_place;
     private String tmp_st_main;
+    private int current_position;
     private int tmp_st_scale;
     private String tmp_st_sub="";
     private Dialog levelDialog;
@@ -52,6 +53,34 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
     HttpAsyncTask httpasynctask;
     Context context;
 
+    final String[ /* For UI */ ][ /* For Naver Maps */ ] st_place = {
+            { "머리", "정신과" },
+            { "얼굴", "외과" },
+            { "식도", "내과" },
+            //{ "가슴", "" },
+            //{ "배", "" },
+            { "등", "정형외과" },
+            { "다리", "정형외과" },
+            { "팔", "정형외과" },
+            { "발", "정형외과" },
+            { "위", "내과" },
+            { "폐", "내과" },
+            { "손", "외과" },
+            { "간", "내과" },
+            //{ "엉덩이", "비뇨기과" },
+            { "두개골", "내과" },
+            { "치아", "치과" },
+            //{ "생식기 (남자)", "" },
+            //{ "생식기 (여자)", "" },
+            { "목", "소아과" },
+            { "코", "소아과" },
+            { "발바닥", "" },
+            { "손가락", "" },
+            { "혀", "" },
+            { "척추", "" },
+            { "귀", "" },
+            { "팔근육", "" }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,8 +96,33 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
         moreDialog.setContentView(R.layout.dialog_more);
 
         int image[] = {
-                R.drawable.head, R.drawable.face, R.drawable.neck, R.drawable.breast, R.drawable.belly, R.drawable.back, R.drawable.leg, R.drawable.arm, R.drawable.ankle, R.drawable.digestive, R.drawable.respiratory, R.drawable.hand, R.drawable.heart, R.drawable.hip, R.drawable.jaw, R.drawable.teeth, R.drawable.man, R.drawable.woman, R.drawable.neck2, R.drawable.nouse, R.drawable.sole, R.drawable.finger, R.drawable.tongue, R.drawable.spine,
-                R.drawable.ear, R.drawable.elbow};
+                R.drawable.head,
+                R.drawable.face,
+                R.drawable.neck,
+                //R.drawable.breast,
+                //R.drawable.belly,
+                R.drawable.back,
+                R.drawable.leg,
+                R.drawable.arm,
+                R.drawable.ankle,
+                R.drawable.digestive,
+                R.drawable.respiratory,
+                R.drawable.hand,
+                R.drawable.heart,
+                //R.drawable.hip,
+                R.drawable.jaw,
+                R.drawable.teeth,
+                //R.drawable.man,
+                //R.drawable.woman,
+                R.drawable.neck2,
+                R.drawable.nouse,
+                R.drawable.sole,
+                R.drawable.finger,
+                R.drawable.tongue,
+                R.drawable.spine,
+                R.drawable.ear,
+                R.drawable.elbow
+        };
 
         View view = inflater.inflate(R.layout.fragment_page2, container, false);
 
@@ -81,13 +135,14 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if(position==0) tmp_st_place="머리";
-                else if(position==1) tmp_st_place="얼굴";
-                else if(position==2) tmp_st_place="목";
-
-                Toast.makeText(getActivity(), "position:" + position +" , krplacename: "+tmp_st_place, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),
+                        "position:" + position + " , " +
+                        "krplacename: " + st_place[position][0] + " , " +
+                        "hospital: " + st_place[position][1],
+                        Toast.LENGTH_SHORT).show();
+                ((TextView)levelDialog.findViewById(R.id.evaluation_title)).setText(st_place[position][0]);
+                current_position = position;
                 levelDialog.show();
-
             }
         });
 
@@ -203,13 +258,14 @@ public class Fragment2 extends Fragment implements View.OnClickListener{
                 moreDialog.show();
                 break;
             case R.id.level_hospital:
-                GPSHelper.initiateGPSservice(getContext());
+                GPSHelper.initiateGPSservice(getContext(), getActivity(),
+                        st_place[current_position][1]);
                 levelDialog.dismiss();
                 break;
             case R.id.more_confirm:
                 levelDialog.dismiss();
                 Person.st_main=tmp_st_main;
-                Person.st_place=tmp_st_place;
+                Person.st_place=st_place[current_position][0];
                 Person.st_scale=tmp_st_scale;
                 Person.st_sub=tmp_st_sub;
                 httpasynctask=new HttpAsyncTask();
